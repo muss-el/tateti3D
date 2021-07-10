@@ -109,14 +109,6 @@ def jugadasGanadoras(pos):
 
 LETRAS = list("ABCDEFGHIJKLMNÑOPQRSTUVWXYZ")
 
-# posicionesMostradas = list()
-# posicionesVacias = list()
-# posiciones = list()
-# for letra in LETRAS:
-#     posicionesVacias.append("   ")
-#     posiciones.append(f"{letra}")
-#     posicionesMostradas.append(f" {letra} ")
-
 JUGADORES = ("1", "2", "3")
 # x = 0
 
@@ -165,7 +157,7 @@ while True:
         clear()
 
     print ("Continuar jugando?")
-    print("Escribe \"si\" para continuar, o cualquier otra cosa para salir")
+    print("Escribe \"si\" para continuar, o cualquier otra cosa para salir:")
     opcion = input(">>> ")
     if opcion in ("si", "SI", "Si"):
         continue
