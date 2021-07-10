@@ -114,8 +114,8 @@ posicionesVacias = list()
 posiciones = list()
 for letra in LETRAS:
     posicionesVacias.append("   ")
-    posiciones.append("{}".format(letra))
-    posicionesMostradas.append(" {} ".format(letra))
+    posiciones.append(f"{letra}")
+    posicionesMostradas.append(f" {letra} ")
 
 JUGADORES = ("1", "2", "3")
 x = 0
