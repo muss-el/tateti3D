@@ -109,46 +109,66 @@ def jugadasGanadoras(pos):
 
 LETRAS = list("ABCDEFGHIJKLMNÑOPQRSTUVWXYZ")
 
-posicionesMostradas = list()
-posicionesVacias = list()
-posiciones = list()
-for letra in LETRAS:
-    posicionesVacias.append("   ")
-    posiciones.append(f"{letra}")
-    posicionesMostradas.append(f" {letra} ")
+# posicionesMostradas = list()
+# posicionesVacias = list()
+# posiciones = list()
+# for letra in LETRAS:
+#     posicionesVacias.append("   ")
+#     posiciones.append(f"{letra}")
+#     posicionesMostradas.append(f" {letra} ")
 
 JUGADORES = ("1", "2", "3")
-x = 0
+# x = 0
 
 while True:
-    mostrarTablero(posicionesMostradas)
 
-    print (f"Turno del jugador {JUGADORES[x]}.")
-    print ("Ingrese una posición valida:")
-    posicion = input(">>> ").upper()
-    if posicion in LETRAS:
-        indicePosicion = LETRAS.index(posicion)
+    posicionesMostradas = list()
+    posicionesVacias = list()
+    posiciones = list()
+    for letra in LETRAS:
+        posicionesVacias.append("   ")
+        posiciones.append(f"{letra}")
+        posicionesMostradas.append(f" {letra} ")
+    x = 0
 
-        if posiciones[indicePosicion] in JUGADORES:
+    while True:
+        mostrarTablero(posicionesMostradas)
+
+        print (f"Turno del jugador {JUGADORES[x]}.")
+        print ("Ingrese una posición valida:")
+        posicion = input(">>> ").upper()
+        if posicion in LETRAS:
+            indicePosicion = LETRAS.index(posicion)
+
+            if posiciones[indicePosicion] in JUGADORES:
+                clear()
+                continue
+        else:
             clear()
             continue
-    else:
+
+        posiciones[indicePosicion] = JUGADORES[x]
+        posicionesVacias[indicePosicion] = "(" + JUGADORES[x] + ")"
+        posicionesMostradas[indicePosicion] = "(" + JUGADORES[x] + ")"
+        if x == 2:
+            x = 0
+        else:
+            x = x + 1
+
+        ganador = jugadasGanadoras(posiciones)
+        if ganador:
+             clear()
+             mostrarTablero(posicionesVacias)
+             print(f"Ganó el jugador {ganador}.")
+             break
+
         clear()
+
+    print ("Continuar jugando?")
+    print("Escribe \"si\" para continuar, o cualquier otra cosa para salir")
+    opcion = input(">>> ")
+    if opcion in ("si", "SI", "Si"):
         continue
-
-    posiciones[indicePosicion] = JUGADORES[x]
-    posicionesVacias[indicePosicion] = "(" + JUGADORES[x] + ")"
-    posicionesMostradas[indicePosicion] = "(" + JUGADORES[x] + ")"
-    if x == 2:
-        x = 0
     else:
-        x = x + 1
-
-    ganador = jugadasGanadoras(posiciones)
-    if ganador:
-         clear()
-         mostrarTablero(posicionesVacias)
-         print(f"Ganó el jugador {ganador}.")
-         break
-
-    clear()
+        break
+exit()
