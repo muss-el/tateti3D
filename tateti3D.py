@@ -1,3 +1,4 @@
+import os
 def mostrarTablero(pos):
     print(f"""          __________________
          /     /     /     /|
@@ -30,8 +31,24 @@ def mostrarTablero(pos):
 |   /_____/_____/_____/
 |  /     /     /     /
 | /  {pos[24]}  /  {pos[25]}  /  {pos[26]}  /
-|/_________________/
-
-""")
+|/_________________/""")
+letras = ('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'Ñ', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z')
 posiciones = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'Ñ', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
+turnoDe = ("*", "°", "+")
+x = 0
+
 mostrarTablero(posiciones)
+
+while True:
+    posicion = input(">>> ")
+    if posicion in letras:
+        indicePosicion = letras.index(posicion)
+    else:
+        continue
+    posiciones[indicePosicion] = turnoDe[x]
+    if x == 2:
+        x = 0
+    else:
+        x = x + 1
+    os.system("cls")
+    mostrarTablero(posiciones)
