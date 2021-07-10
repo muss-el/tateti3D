@@ -85,8 +85,21 @@ def jugadasGanadoras(pos):
     jugada42 = [pos[1] == pos[13] == pos[25], pos[1]]
     jugada43 = [pos[7] == pos[13] == pos[19], pos[7]]
     jugada44 = [pos[5] == pos[13] == pos[21], pos[5]]
-    jugada45 = [pos[3] == pos[12] == pos[23], pos[3]]
-    jugadas = [jugada1, jugada2, jugada3, jugada4, jugada5, jugada6, jugada7, jugada8, jugada9, jugada10, jugada11, jugada12, jugada13, jugada14, jugada15, jugada16, jugada17, jugada18, jugada19, jugada20, jugada21, jugada22, jugada23, jugada24, jugada25, jugada26, jugada27, jugada28, jugada29, jugada30, jugada31, jugada32, jugada33, jugada34, jugada35, jugada36, jugada37, jugada38, jugada39, jugada40, jugada41, jugada42, jugada43, jugada44, jugada45]
+    jugada45 = [pos[3] == pos[13] == pos[23], pos[3]]
+    jugada46 = [pos[0] == pos[13] == pos[26], pos[0]]
+    jugada47 = [pos[2] == pos[13] == pos[24], pos[2]]
+    jugada48 = [pos[8] == pos[13] == pos[18], pos[8]]
+    jugada49 = [pos[6] == pos[13] == pos[20], pos[6]]
+    jugadas = [jugada1, jugada2, jugada3, jugada4, jugada5,
+            jugada6, jugada7, jugada8, jugada9, jugada10,
+            jugada11, jugada12, jugada13, jugada14, jugada15,
+            jugada16, jugada17, jugada18, jugada19, jugada20,
+            jugada21, jugada22, jugada23, jugada24, jugada25,
+            jugada26, jugada27, jugada28, jugada29, jugada30,
+            jugada31, jugada32, jugada33, jugada34, jugada35,
+            jugada36, jugada37, jugada38, jugada39, jugada40,
+            jugada41, jugada42, jugada43, jugada44, jugada45,
+            jugada46, jugada47, jugada48, jugada49]
     for jugada in jugadas:
         if jugada[0]:
             return jugada[1]
@@ -94,33 +107,38 @@ def jugadasGanadoras(pos):
             continue
     return False
 
-LETRAS = ('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'Ñ', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z')
+LETRAS = list("ABCDEFGHIJKLMNÑOPQRSTUVWXYZ")
 
+posicionesMostradas = list()
 posicionesVacias = list()
 posiciones = list()
 for letra in LETRAS:
     posicionesVacias.append("   ")
-    posiciones.append(" {} ".format(letra))
+    posiciones.append("{}".format(letra))
+    posicionesMostradas.append(" {} ".format(letra))
 
 JUGADORES = ("1", "2", "3")
 x = 0
 
 while True:
-    mostrarTablero(posiciones)
+    mostrarTablero(posicionesMostradas)
 
-    posicion = input("Turno del jugador " + JUGADORES[x] + ".\nIngrese una posición valida:\n>>> ").upper()
+    print (f"Turno del jugador {JUGADORES[x]}.")
+    print ("Ingrese una posición valida:")
+    posicion = input(">>> ").upper()
     if posicion in LETRAS:
         indicePosicion = LETRAS.index(posicion)
 
-        if posiciones[indicePosicion][1] in JUGADORES:
+        if posiciones[indicePosicion] in JUGADORES:
             clear()
             continue
     else:
         clear()
         continue
 
-    posiciones[indicePosicion] = "(" + JUGADORES[x] + ")"
+    posiciones[indicePosicion] = JUGADORES[x]
     posicionesVacias[indicePosicion] = "(" + JUGADORES[x] + ")"
+    posicionesMostradas[indicePosicion] = "(" + JUGADORES[x] + ")"
     if x == 2:
         x = 0
     else:
